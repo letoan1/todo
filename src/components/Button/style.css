@@ -1,0 +1,26 @@
+.btn {
+	background: #fff;
+	cursor: pointer;
+}
+
+.btn--add {
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	font-size: 40px;
+}
+
+.btn--special {
+	display: block;
+	color: rgb(8, 245, 87);
+	margin-top: 4px;
+	border: none;
+	font-size: 20px;
+	margin-right: 10px;
+}
+
+.btn--remove {
+	border: none;
+	font-size: 20px;
+	font-weight: bold;
+}

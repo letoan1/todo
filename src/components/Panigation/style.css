@@ -1,0 +1,14 @@
+.panigation {
+	text-align: center;
+}
+.btn--pani {
+	padding: 10px;
+	background: #fff;
+	border: none;
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+.active {
+	color: rgb(185, 45, 45);
+}
