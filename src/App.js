@@ -1,4 +1,6 @@
 import './sass/style.scss'
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 import Header from './components/Header'
 import Input from './components/Input'
 import Line from './components/Line'
