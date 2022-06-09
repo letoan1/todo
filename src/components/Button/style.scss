@@ -10,13 +10,26 @@
 	font-size: 40px;
 }
 
-.btn--special {
-	display: block;
+.btn--special{
 	color: rgb(8, 245, 87);
 	margin-top: 4px;
 	border: none;
+	font-size: 22px;
+    position: absolute;
+	top: 17px;
+	left: 30px;
+}
+
+.line-through {
+	text-decoration: line-through;
+	opacity: 0.5;
+}
+
+.btn--edit {
+	border: none;
 	font-size: 20px;
 	margin-right: 10px;
+	color: #cbd930;
 }
 
 .btn--remove {

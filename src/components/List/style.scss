@@ -1,0 +1,26 @@
+.list-item {
+	display: flex;
+	align-items: center;
+	padding: 0 30px;
+	justify-content: space-between;
+}
+
+.list-wrapper {
+	min-height: 0;
+	margin-bottom: 100px;
+}
+
+.utilities {
+    position: relative;
+}
+
+.limit-text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+			line-clamp: 1;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	margin-left: 30px;
+}
