@@ -14,6 +14,7 @@ export default function LayoutTodo() {
 	const [currentPage, setCurrentPage] = React.useState(1)
 	const [status, setStatus] = React.useState('all')
 	const [filteredTodos, setFilteredTodos] = React.useState([])
+	const [showGoToTop, setShowGoToTop] = React.useState(false)
 	const LIMIT_TASK_IN_PAGE = 5
 
 	const inputRef = React.useRef()
@@ -26,6 +27,28 @@ export default function LayoutTodo() {
 		filterHandler()
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [tasks, task, status])
+
+	React.useEffect(() => {
+		const handleScroll = () => {
+			if(window.scrollY >= 200) {
+				setShowGoToTop(true)
+			}else{
+				setShowGoToTop(false)
+			}
+		}
+		window.addEventListener('scroll', handleScroll)
+
+		return(() => {
+		window.removeEventListener('scroll', handleScroll)
+		})
+	}, [])
+
+	const handleClickGoToTop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		})
+	}
 
 	const filterHandler = () => {
 		switch(status) {
@@ -117,6 +140,21 @@ export default function LayoutTodo() {
 				handleSetCurrentPage={handleSetCurrentPage}
 			/>
 			{/* <Form /> */}
+			{showGoToTop && (
+			  <button
+			  	style = {{
+					  position: 'fixed',
+					  right: 50,
+					  bottom: 20,
+					  padding: 10,
+					  backgroundColor: 'rgb(53, 170, 248)',
+					  border: 'none'
+				  }}
+				  onClick = {() => handleClickGoToTop()}
+			  >
+				  Go to top
+			  </button>
+		  )}
 		</>
 	)
 }
