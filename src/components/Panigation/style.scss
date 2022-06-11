@@ -1,13 +1,12 @@
-.panigation {
-	text-align: center;
-}
-
-.page-number {
-	list-style: none;
+.panigation-wrapper{
+	height: 60px;
+	width: 200px;
+	margin: 0 auto;
 	display: flex;
-	gap: 0 20px;
+	justify-content: space-between;
+	border: none;
 }
 
-.page-number li.active {
-	color: rgb(211, 52, 52);
+.btn--active{
+	color: red;
 }

@@ -1,6 +1,8 @@
 .btn {
 	background: #fff;
 	cursor: pointer;
+	font-size: 20px;
+	border: none;
 }
 
 .btn--add {
@@ -15,9 +17,16 @@
 	margin-top: 4px;
 	border: none;
 	font-size: 22px;
-    position: absolute;
-	top: 17px;
-	left: 30px;
+	margin-right: 20px;
+}
+
+.btn--completed {
+	color: rgb(216, 94, 94);
+	margin-top: 4px;
+	border: none;
+	font-size: 22px;
+	margin-right: 20px;
+	background-color: #fff;
 }
 
 .line-through {

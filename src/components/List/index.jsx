@@ -2,15 +2,16 @@ import React from 'react'
 import ListItem from './ListItem'
 import './style.scss'
 
-export default function List({ handleDelete, tasks, handleEdit, handleCompleted }) {
+export default function List({ handleDelete, completedTasks, getTaskInCurrentPage, filteredTodos }) {
 
 	return (
 		<div className="list-wrapper">
 			<ListItem
-				tasks={tasks}
-				handleEdit={handleEdit}
-				handleCompleted={handleCompleted}
+				// tasks={tasks}
+				completedTasks={completedTasks}
 				handleDelete={handleDelete}
+				getTaskInCurrentPage={getTaskInCurrentPage}
+				filteredTodos={filteredTodos}
 			/>
 		</div>
 	)

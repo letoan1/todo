@@ -5,95 +5,118 @@ import Line from '../Line/Line'
 import ButtonAdd from '../Button/ButtonAdd'
 import List from '../List'
 import Panigation from '../Panigation/Panigation'
+import Select from '../Select/Select'
 
 export default function LayoutTodo() {
 	const [task, setTask] = React.useState('')
-	const [tasks, setTasks] = React.useState([])
-	const [idTask, setIdTask] = React.useState('')
-	const [isEdit, setIsEdit] = React.useState(false)
+	const [tasks, setTasks] = React.useState(JSON.parse(localStorage.getItem('todoList')) ?? [])
 	const [tasksRemaining, setTasksRemaining] = React.useState(0)
 	const [currentPage, setCurrentPage] = React.useState(1)
-	const [itemsPerPage, setItemsPerPage] = React.useState(5)
+	const [status, setStatus] = React.useState('all')
+	const [filteredTodos, setFilteredTodos] = React.useState([])
+	const LIMIT_TASK_IN_PAGE = 5
 
 	const inputRef = React.useRef()
 
 	React.useEffect(() => {
+		console.log('asdasd');
 		setTasksRemaining(tasks.filter(task => task.completed).length)
-	})
+		document.title = task
+		localStorage.setItem('todoList', JSON.stringify(tasks))
+		filterHandler()
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [tasks, task, status])
+
+	const filterHandler = () => {
+		switch(status) {
+			case 'completed':
+				setFilteredTodos(tasks.filter(task => task.completed === true))
+				break
+			case 'uncompleted':
+				setFilteredTodos(tasks.filter(task => task.completed === false))
+				break
+			default:
+				setFilteredTodos(tasks)
+				break
+		}
+	}
+
+	const statusHandler = (e) => {
+		setStatus(e.target.value)
+	}
 
 	const handleAdd = () => {
-		if(!task) {
+		if(!task.trim()) {
 			alert('Please enter a value')
 		}else{
-			setTasks([ ...tasks, { task, completed: false }])
+			setTasks([{ id: new Date().getTime(), task, completed: false }, ...tasks])
 			setTask("")
 			inputRef.current.focus()
 		}
 	}
 
-	const handleEdit = (value, index) => {
-		setIsEdit(!isEdit)
-		setTask(value)
-		setIdTask(index)
-		inputRef.current.focus()
-	}
-
-	const handleUpdate = () => {
-		setTasks((prev) => {
-		  if (tasks.length > 0) {
-			prev[idTask] = tasks
-		  }
-		  return prev
-		})
-		setIdTask("")
-		setTask("")
-		setIsEdit(!isEdit)
-	}
-
-	const handleCompleted = (index) => {
+	const completedTasks = (index) => {
 		const newTasks = [...tasks]
-            newTasks[index].completed = true
+        if(!newTasks[index].completed) {
+			newTasks[index].completed = true
+		}else{
+			newTasks[index].completed = false
+		}
+
         setTasks(newTasks)
 	}
 
-	const handleDelete = (index) => {
-		tasks.splice(index, 1)
-		setTasks([...tasks])
+	const handleDelete = (id) => {
+		console.log('Delete', id)
+		const deleteTask = tasks.filter(task => task.id !== id)
+		setTasks(deleteTask)
 	}
 
-	const indexOfLastItem = currentPage * itemsPerPage
-	const indexOfFirstItem = indexOfLastItem - itemsPerPage
-	const currentItems = tasks.task ? tasks.slice(indexOfFirstItem, indexOfLastItem) : []
+	const getTaskInCurrentPage = () => {
+		const startIndex = currentPage * LIMIT_TASK_IN_PAGE - LIMIT_TASK_IN_PAGE
+		return [...tasks.slice(startIndex, startIndex + LIMIT_TASK_IN_PAGE)]
+	}
+
+	const handleSetCurrentPage = (page) => {
+		setCurrentPage(page)
+	}
 
 	return (
 		<>
-			<Header title={'TO DO LIST APPLICATION'} tasksRemaining={tasksRemaining} />
+			<Header
+				title={'TO DO LIST APPLICATION'}
+				tasksRemaining={tasksRemaining}
+			/>
 			<div className="crossbar">
 			<Input
 				inputRef={inputRef}
 				task={task}
 				setTask={setTask}
+				onKeyDown={handleAdd}
 			/>
 			<ButtonAdd
-				isEdit={isEdit}
 				handleAdd={handleAdd}
-				handleUpdate={handleUpdate}
+			/>
+			<Select
+				statusHandler={statusHandler}
 			/>
 			</div>
 			<Line fullWidth />
 			<List
 				handleDelete={handleDelete}
-				tasks={tasks}
-				handleEdit={handleEdit}
-				handleCompleted={handleCompleted}
+				// tasks={tasks}
+				completedTasks={completedTasks}
+				getTaskInCurrentPage={getTaskInCurrentPage()}
+				filteredTodos={filteredTodos}
 			/>
 			<Line fullWidth />
 			<Panigation
-				tasks={tasks}
 				currentPage={currentPage}
-				setCurrentPage={setCurrentPage}
-				itemsPerPage={itemsPerPage}
+				tasks={tasks}
+				limit={LIMIT_TASK_IN_PAGE}
+				handleSetCurrentPage={handleSetCurrentPage}
 			/>
+			{/* <Form /> */}
 		</>
 	)
 }

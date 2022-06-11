@@ -1,0 +1,67 @@
+.filter-todo {
+	padding: 1rem;
+}
+
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	outline: 0;
+	box-shadow: none;
+	border: 0 !important;
+	background-image: none;
+	position: relative;
+}
+
+.select {
+	position: absolute;
+    right: 36.5%;
+    overflow: hidden;
+    border: 2px solid rgb(53, 170, 248);
+    border-radius: 10px;
+    top: 125.2px;
+}
+select {
+	color:rgb(53, 170, 248);
+	font-family: "Poppins", sans-serif;
+	cursor: pointer;
+	width: 12rem;
+}
+  /* Arrow */
+.select::after {
+	content: "\25BC";
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 1rem;
+	background:rgb(53, 170, 248);
+	cursor: pointer;
+	pointer-events: none;
+}
+
+.list-item {
+	display: flex;
+	align-items: center;
+	padding: 0 30px;
+	justify-content: space-between;
+}
+
+.list-wrapper {
+	min-height: 0;
+	margin-bottom: 100px;
+}
+
+.utilities {
+    position: relative;
+}
+
+.limit-text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+}
+
