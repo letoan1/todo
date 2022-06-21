@@ -16,10 +16,11 @@ select {
 
 .select {
 	position: absolute;
-    right: 38.5%;
+    right: 36.5%;
     overflow: hidden;
     border: 2px solid rgb(53, 170, 248);
     border-radius: 10px;
+    top: 125.2px;
 }
 select {
 	color:rgb(53, 170, 248);
@@ -39,4 +40,28 @@ select {
 	pointer-events: none;
 }
 
+.list-item {
+	display: flex;
+	align-items: center;
+	padding: 0 30px;
+	justify-content: space-between;
+}
+
+.list-wrapper {
+	min-height: 0;
+	margin-bottom: 100px;
+}
+
+.utilities {
+    position: relative;
+}
+
+.limit-text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+}
 

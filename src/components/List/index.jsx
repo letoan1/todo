@@ -2,7 +2,7 @@ import React from 'react'
 import ListItem from './ListItem'
 import './style.scss'
 
-export default function List({ handleDelete, completedTasks, getTaskInCurrentPage, filteredTodos,buttonRef }) {
+export default function List({ handleDelete, completedTasks, getTaskInCurrentPage, filteredTodos }) {
 
 	return (
 		<div className="list-wrapper">
@@ -12,7 +12,6 @@ export default function List({ handleDelete, completedTasks, getTaskInCurrentPag
 				handleDelete={handleDelete}
 				getTaskInCurrentPage={getTaskInCurrentPage}
 				filteredTodos={filteredTodos}
-				buttonRef={buttonRef}
 			/>
 		</div>
 	)

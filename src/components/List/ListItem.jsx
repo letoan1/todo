@@ -5,7 +5,7 @@ import ButtonRemove from '../Button/ButtonRemove'
 import Line from '../Line/Line'
 import '../Button/style.scss'
 
-export default function ListItem({ handleDelete, completedTasks, getTaskInCurrentPage, filteredTodos, buttonRef }) {
+export default function ListItem({ handleDelete, completedTasks, getTaskInCurrentPage, filteredTodos }) {
 	return (
 		<div>
 			{filteredTodos.map((task, index) => (
@@ -15,7 +15,7 @@ export default function ListItem({ handleDelete, completedTasks, getTaskInCurren
 							<ListContent content = {task.task} />
 						</div>
 						<div className={task.id} style = {{ display: 'flex', padding: '20px 0'}}>
-							<ButtonSpecial buttonRef={buttonRef} completed={task.completed} completedTasks={() => completedTasks(task.id)} />
+							<ButtonSpecial completed={task.completed} completedTasks={() => completedTasks(index)} />
 							<ButtonRemove handleDelete = {() => handleDelete(task.id)} />
 						</div>
 					</div>
