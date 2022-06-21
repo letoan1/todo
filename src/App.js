@@ -1,12 +1,12 @@
-import './sass/style.scss'
+import './sass/style.scss';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import LayoutTodo from '../src/components/LayoutTodo'
+import Navigation from '../src/components/Nav/Nav';
 
 function App() {
   return (
-    <div className="App">
-        <LayoutTodo />
-    </div>
+   <>
+      <Navigation />
+   </>
   );
 }
 
