@@ -1,0 +1,14 @@
+.todo {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    background-image: url('https://i.pinimg.com/564x/7d/c5/95/7dc595a147737bbe1129b9b4db825a15.jpg');
+    // background-size: cover;
+    // background-position: center;
+    padding: 10px;
+}
+
+.todo__search {
+    display: flex;
+    gap: 10px;
+}
